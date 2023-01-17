@@ -31,37 +31,38 @@ public class baekjoon9012 {
                 if (ch.equals("(")) {
                     if (cnt == 0) {
                         stack[0] = 1;
-                        cnt++; //
+                    }
+                    else {
+                        for(int j = 0; j < length; j++) { // 반복문 사용해서 모든 인덱스를 한칸씩 밀어낸다.
+                            stack[length - j] = stack[length - j - 1]; // 맨 뒤 값부터 저장해야 모두 옮겨진다.
+                        }
+                        stack[0] = 1;
                     }
                 }
-
-                else {
-                    for(int j = 0; j < length; j++) { // 반복문 사용해서 모든 인덱스를 한칸씩 밀어낸다.
-                        stack[length - j] = stack[length - j - 1]; // 맨 뒤 값부터 저장해야 모두 옮겨진다.
-                    }
-                    stack[0] = 1; //
-                    cnt++; //
-                }
-
                 if (ch.equals(")")) {
-                    for (int l = 0; l < length; l++) {
-                        stack[l] = stack[l+1]; // 뒤에서부터 앞으로 당겨오기
+                    if(stack[0] == 1) {
+                        for (int l = 0; l < length; l++) {
+                            stack[l] = stack[l+1]; // 뒤에서부터 앞으로 당겨오기
+                        }
                     }
                 }
             }
 
-            for(int m = 0; m < 51; m++){
-                if(stack[m] != 0){
-                    check++;
+            for(int j = 0; j <51; j++){
+                if(stack[i] != 0){
+                    cnt++;
                 }
             }
 
-            if(check == 0){
+            if(cnt == 0){
                 System.out.println("YES");
             }
             else {
                 System.out.println("NO");
+                System.out.println(cnt);
             }
+
+
         }
     }
 }
